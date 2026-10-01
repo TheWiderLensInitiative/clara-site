@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara — Privacy Policy</title>
+<meta name="description" content="Clara is built so that by default nothing leaves your computer. Read the full privacy policy.">
+<link rel="icon" type="image/png" href="/assets/clara-mark-transparent.png">
+<meta property="og:title" content="Clara — Privacy Policy">
+<meta property="og:description" content="By default, nothing leaves your computer. The model, the agent, search, memory, her voice, chats and files all run locally.">
+<style>
+:root{
+  --bg:#06060b; --bg2:#0b0b14; --card:#101019; --line:#23232f;
+  --text:#f2f2f7; --muted:#a7a7b8;
+  --cyan:#38e1ff; --violet:#8b5cf6; --magenta:#f471d8;
+  --grad:linear-gradient(100deg,var(--cyan),var(--violet) 55%,var(--magenta));
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{position:sticky;top:0;z-index:50;background:rgba(6,6,11,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1100px;margin:0 auto;padding:0 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.25rem}
+.brand img{width:34px;height:34px;border-radius:9px}
+.back{font-size:.95rem;color:var(--muted)}
+.back:hover{color:var(--text)}
+main{padding:64px 0 90px}
+h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15;letter-spacing:-.02em;margin:14px 0 12px}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.lead{color:var(--muted);font-size:1.08rem;margin-bottom:34px}
+h2{font-size:1.35rem;margin:38px 0 12px;letter-spacing:-.01em}
+h2 .n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:rgba(139,92,246,.16);color:#c9b3ff;font-size:.95rem;margin-right:10px;vertical-align:2px}
+p{margin:0 0 14px;color:#d9d9e2}
+p strong{color:var(--text)}
+ul{margin:0 0 16px 20px;color:#d9d9e2}
+li{margin-bottom:8px}
+table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:.95rem;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:block;overflow-x:auto}
+thead th{background:rgba(139,92,246,.1);text-align:left;padding:12px 14px;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#c9b3ff;white-space:nowrap}
+tbody td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top;color:#d9d9e2}
+tbody tr:first-child td{border-top:0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:22px 0;color:var(--muted);font-size:.96rem}
+.note strong{color:var(--text)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.9rem}
+.foot-inner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:1100px;margin:0 auto;padding:0 22px}
+.foot-links{display:flex;gap:20px}
+.foot-links a:hover{color:var(--text)}
+.updated{color:var(--muted);font-size:.88rem;margin-top:26px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/"><img src="/assets/clara-mark-transparent.png" alt="Clara mark">Clara</a>
+    <a class="back" href="/">← Back to home</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+<span class="eyebrow">Privacy policy</span>
+<h1>What stays on your PC, <span class="grad-text">and what doesn't</span></h1>
+<p class="lead">Clara is built so that <strong>by default nothing leaves your computer</strong>. The model, the agent, search, memory, her voice, chats, files and the router all run locally. This page lists every exception — and every one of them is something you turn on.</p>
+
+<h2><span class="n">1</span>Never leaves your PC</h2>
+<ul>
+<li>Your chats, Clara's memory about you, her personality and notes</li>
+<li>Everything she makes in her workspace (her Library)</li>
+<li>Your photos and files you send her</li>
+<li>Clara's voice is generated on your PC (Kokoro)</li>
+<li>The pairing tokens, API keys and account logins (encrypted with a key that only your user can read)</li>
+</ul>
+
+<h2><span class="n">2</span>Leaves your PC only when you turn it on</h2>
+<table>
+<thead><tr><th>Feature</th><th>What is sent</th><th>Where</th><th>You control it with</th></tr></thead>
+<tbody>
+<tr><td>Web search &amp; browsing</td><td>Your searches and the pages she visits</td><td>The websites / search engines (through your own SearXNG)</td><td>Asking her to search</td></tr>
+<tr><td>Cloud boost</td><td>The task (e.g. coding job, picture or video prompt)</td><td>OpenRouter, then the model you picked (their privacy policies apply)</td><td>Adding a key, approval per task, daily/monthly caps</td></tr>
+<tr><td>Connectors</td><td>API calls on your behalf</td><td>That service (Google, Spotify…)</td><td>Connecting the account; writes need your OK</td></tr>
+<tr><td>Voice mode / dictation</td><td>What you say</td><td>Your phone's built-in speech recognizer (often Google's; depending on the phone and its settings it may run on the device or in the cloud)</td><td>Using the mic button or voice mode</td></tr>
+<tr><td>Remote access</td><td>Encrypted traffic between your phone and PC</td><td>Tailscale's coordination servers (not your data)</td><td>Running <code>setup/tailscale.sh</code></td></tr>
+<tr><td>Installation &amp; updates</td><td>Downloads of models and software</td><td>GitHub, Hugging Face, PyPI, npm, Docker Hub</td><td>Running the installer</td></tr>
+</tbody>
+</table>
+<div class="note"><strong>The Clara project has no servers, analytics or telemetry</strong>, and nothing you do is used to train anything.</div>
+
+<h2><span class="n">3</span>Passwords</h2>
+<p>Website passwords live <strong>only on your phone</strong>, encrypted with Android's keystore. When Clara needs to sign in, your phone asks for your fingerprint, encrypts that one login for that one sign-in, and the browser fills it in. Clara never sees it, and the PC never stores it.</p>
+
+<h2><span class="n">4</span>Safety rules Clara can't change</h2>
+<p>Clara runs as her own Linux user in a sandbox: she can't see your home folder, can't use sudo, and her safety rules (<strong>Guardian</strong>) are files she can read but not modify. Sending, deleting, buying, installing, network and admin actions ask you on your phone first. Emails she reads are treated as untrusted: instructions inside them are ignored.</p>
+
+<h2><span class="n">5</span>The Clara phone app</h2>
+<p>The app talks <strong>only to your own PC</strong> (your Clara Bridge), over your home Wi-Fi or your private Tailscale network. It contains no analytics, ads, crash reporting or tracking libraries, and it never contacts the Clara project or any server of ours: we don't run any.</p>
+<table>
+<thead><tr><th>On your phone</th><th>Why</th><th>Where it goes</th></tr></thead>
+<tbody>
+<tr><td>Your PC's address and the pairing token</td><td>To reach your Clara</td><td>Stays on the phone (app storage)</td></tr>
+<tr><td>Saved website logins (vault)</td><td>So Clara can sign in without seeing them</td><td>Stays on the phone, encrypted with the Android keystore; one login is sealed for your PC only when you approve a sign-in</td></tr>
+<tr><td>Messages, photos and files you send</td><td>To talk to Clara</td><td>Your PC only</td></tr>
+<tr><td>Microphone (voice mode, dictation)</td><td>To hear you</td><td>The phone's own speech recognizer turns speech into text; the text goes to your PC</td></tr>
+<tr><td>Notifications</td><td>Replies, reminders, approval requests</td><td>Shown on the phone</td></tr>
+<tr><td>Your OpenRouter key, if you add one</td><td>Cloud boost</td><td>Your PC, which stores it encrypted</td></tr>
+</tbody>
+</table>
+<p>Temporary voice clips and previews live in the app's cache and are deleted by Android as needed. Uninstalling the app removes everything it stored on the phone. Data on your PC is yours to keep or delete (<code>~/.local/share/clara</code>).</p>
+
+<div class="note"><strong>Children:</strong> Clara is not directed at children under 13.</div>
+
+<h2><span class="n">6</span>Changes &amp; contact</h2>
+<p>Changes to this policy are published in <code>docs/PRIVACY.md</code>, with history at <a href="https://github.com/TheWiderLensInitiative/clara/commits/main/docs/PRIVACY.md" target="_blank" rel="noopener" style="color:var(--cyan)">github.com/TheWiderLensInitiative/clara</a>.</p>
+<p>The Wider Lens Initiative Project: questions and requests at <a href="https://github.com/TheWiderLensInitiative/clara/issues" target="_blank" rel="noopener" style="color:var(--cyan)">github.com/TheWiderLensInitiative/clara/issues</a> (security problems: see SECURITY.md).</p>
+
+<p class="updated">This page mirrors <code>docs/PRIVACY.md</code> in the Clara repository and is kept in step with it.</p>
+</div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 The Wider Lens Initiative · Clara is free &amp; open source (Apache 2.0)<br>Created by DevIgnite × The Wider Lens Initiative Project</div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="https://github.com/TheWiderLensInitiative/clara" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

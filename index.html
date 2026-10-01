@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara — Your own AI assistant, on your computer</title>
+<meta name="description" content="Clara is a free, open-source, private AI assistant that runs on your own PC, with an Android app to talk to her anywhere. No subscription. Your data never leaves your machine.">
+<link rel="icon" type="image/png" href="/assets/clara-mark-transparent.png">
+<meta property="og:title" content="Clara — Your own AI assistant, on your computer">
+<meta property="og:description" content="Free, open-source, private AI. Android app + your own PC. No subscription, no cloud, no compromise.">
+<meta property="og:image" content="/assets/clara-logo.png">
+<style>
+:root{
+  --bg:#06060b; --bg2:#0b0b14; --card:#101019; --line:#23232f;
+  --text:#f2f2f7; --muted:#a7a7b8;
+  --cyan:#38e1ff; --violet:#8b5cf6; --magenta:#f471d8;
+  --grad:linear-gradient(100deg,var(--cyan),var(--violet) 55%,var(--magenta));
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;font-weight:700;font-size:1.02rem;border:0;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.btn-primary{background:var(--grad);color:#06060b;box-shadow:0 8px 30px rgba(139,92,246,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(139,92,246,.5)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--violet);transform:translateY(-2px)}
+section{padding:84px 0}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.2;letter-spacing:-.01em;margin-bottom:14px}
+.lead{color:var(--muted);font-size:1.08rem;max-width:640px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(6,6,11,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.brand img{width:34px;height:34px;border-radius:9px}
+.nav-links{display:flex;gap:26px;font-size:.95rem;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.nav-cta .btn{padding:10px 20px;font-size:.9rem}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* hero */
+.hero{position:relative;padding:96px 0 70px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:640px;background:radial-gradient(ellipse 60% 55% at 50% 0%,rgba(139,92,246,.22),transparent 70%);pointer-events:none}
+.hero-logo{width:min(210px,44vw);height:auto;margin:0 auto 26px;display:block;filter:drop-shadow(0 0 60px rgba(139,92,246,.45))}
+.hero h1{font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.12;letter-spacing:-.02em;max-width:820px;margin:0 auto 20px}
+.hero p.sub{color:var(--muted);font-size:clamp(1.02rem,2.4vw,1.22rem);max-width:660px;margin:0 auto 34px}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.hero-note{font-size:.88rem;color:var(--muted)}
+.hero-note b{color:var(--text)}
+.badge{display:inline-block;padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:.82rem;color:var(--muted);margin-bottom:22px}
+.badge .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ddc84;margin-right:8px;vertical-align:1px}
+
+/* strip */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.strip-inner{display:flex;justify-content:center;gap:clamp(24px,6vw,80px);flex-wrap:wrap;padding:26px 0}
+.strip-item{text-align:center}
+.strip-item .n{font-size:1.5rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.strip-item .l{font-size:.85rem;color:var(--muted)}
+
+/* features */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:border-color .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(139,92,246,.55);transform:translateY(-3px)}
+.card .ico{font-size:1.7rem;margin-bottom:12px}
+.card h3{font-size:1.08rem;margin-bottom:8px;letter-spacing:-.01em}
+.card p{color:var(--muted);font-size:.94rem}
+.card .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(56,225,255,.35);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+
+/* watch / media */
+.video-wrap{position:relative;max-width:860px;margin:40px auto 0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(139,92,246,.18)}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.shots{display:flex;gap:18px;margin-top:44px;overflow-x:auto;padding:6px 4px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.shot{flex:0 0 auto;width:min(230px,58vw);scroll-snap-align:start}
+.shot img{width:100%;height:auto;border-radius:22px;border:1px solid var(--line);display:block;background:#000}
+.shot p{font-size:.85rem;color:var(--muted);text-align:center;margin-top:10px}
+
+/* how */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:40px}
+.path{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;position:relative;overflow:hidden}
+.path::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.path h3{font-size:1.2rem;margin-bottom:6px}
+.path .who{font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.path p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+.path ol{color:var(--muted);font-size:.94rem;margin:0 0 4px 20px;display:grid;gap:8px}
+.path b{color:var(--text)}
+.cmd{margin-top:30px;background:#000;border:1px solid var(--line);border-radius:var(--radius);padding:24px;overflow-x:auto}
+.cmd .cap{font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cmd pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92rem;line-height:1.8;color:var(--cyan);white-space:pre-wrap;word-break:break-all}
+.cmd .note{color:var(--muted);font-size:.88rem;margin-top:14px}
+.cmd code{background:#111;border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.85rem;color:var(--cyan);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.arch{margin-top:26px;background:#000;border:1px solid var(--line);border-radius:var(--radius);padding:26px;overflow-x:auto}
+.arch pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem;line-height:1.7;color:#c9c9d8;white-space:pre}
+.arch .hl{color:var(--cyan)} .arch .hl2{color:var(--magenta)} .arch .hl3{color:var(--violet)}
+
+/* privacy */
+.privacy{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.check-list{list-style:none;margin-top:28px;display:grid;gap:14px;max-width:720px}
+.check-list li{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:.95rem}
+.check-list .tick{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(61,220,132,.14);color:#3ddc84;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.check-list small{color:var(--muted);display:block;margin-top:2px}
+
+/* requirements */
+.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:40px}
+.req{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;text-align:center}
+.req .big{font-size:1.35rem;font-weight:800;margin-bottom:6px}
+.req .cap{font-size:.88rem;color:var(--muted)}
+
+/* download */
+.download{text-align:center;background:radial-gradient(ellipse 55% 60% at 50% 100%,rgba(139,92,246,.16),transparent 70%)}
+.dl-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:40px 0;text-align:left}
+.dl-note{max-width:640px;margin:26px auto 0;color:var(--muted);font-size:.92rem}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative}
+.step h3{margin:8px 0 8px;font-size:1.1rem}
+.step p{color:var(--muted);font-size:.94rem}
+.step code{background:#000;border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.85rem;color:var(--cyan);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+summary{font-weight:700;cursor:pointer;font-size:1rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;color:var(--violet);flex:none}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);font-size:.94rem;margin-top:12px}
+details code{background:#000;border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.85rem;color:var(--cyan);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.faq-list{max-width:760px;margin:36px auto 0}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.88rem}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a:hover{color:var(--text)}
+.foot-credit{width:100%;margin-top:14px;font-size:.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><img src="/assets/clara-mark-transparent.png" alt="Clara logo">Clara</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#watch">Watch</a>
+      <a href="#how">How it works</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#download">Download</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span>Free &amp; open source · Apache 2.0</div>
+    <img class="hero-logo" src="/assets/clara-logo.png" alt="Clara — glowing C logo">
+    <h1>Your own AI assistant.<br><span class="grad-text">On your computer, not in the cloud.</span></h1>
+    <p class="sub">Clara is a free, private AI assistant that runs on your own PC — with an Android app to talk to her anywhere. No subscription. Your chats, files, and memories never leave your machine.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#download">Download for Android</a>
+      <a class="btn btn-ghost" href="https://github.com/TheWiderLensInitiative/clara" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+    <p class="hero-note"><b>Free forever</b> · No account needed · Android 9+</p>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap strip-inner">
+    <div class="strip-item"><div class="n">$0</div><div class="l">No subscription, ever</div></div>
+    <div class="strip-item"><div class="n">100%</div><div class="l">Your data stays on your PC</div></div>
+    <div class="strip-item"><div class="n">Open</div><div class="l">Source code you can read</div></div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <span class="eyebrow">What she does</span>
+    <h2>An assistant, not a chatbot</h2>
+    <p class="lead">Clara doesn't just answer questions — she does the work: research, files, code, scheduling, and a live browser you can watch and take over.</p>
+    <div class="grid">
+      <div class="card"><div class="tag">New</div><div class="ico">🌐</div><h3>Watch her browse, live in the chat</h3><p>While Clara browses, a live preview of her screen appears right in the conversation. Open it full-screen to watch — or take over.</p></div>
+      <div class="card"><div class="tag">New</div><div class="ico">🖼️</div><h3>Replies keep the page she used</h3><p>A picture of the page stays under her answer, with an <b>Open page</b> button to see it yourself.</p></div>
+      <div class="card"><div class="tag">New</div><div class="ico">🎙️</div><h3>Faster hands-free voice</h3><p>Voice mode starts talking about twice as fast, never repeats herself, and captions stay clean.</p></div>
+      <div class="card"><div class="tag">New</div><div class="ico">📖</div><h3>Reads web pages, privately</h3><p>Clara can read any web page with her own private reader — no paid API, nothing sent to a third party.</p></div>
+      <div class="card"><div class="tag">New</div><div class="ico">💡</div><h3>Offers, not empty promises</h3><p>In chat, Clara offers to do things — "Want me to make that now?" — instead of promising and not doing them.</p></div>
+      <div class="card"><div class="tag">New</div><div class="ico">👆</div><h3>Long-press any reply</h3><p>Copy it to your clipboard, or report it if something looks wrong.</p></div>
+      <div class="card"><div class="ico">💬</div><h3>Chat with a personality</h3><p>Ongoing conversations with an animated character you can restyle to make her yours.</p></div>
+      <div class="card"><div class="ico">🛠️</div><h3>Agentic tasks</h3><p>Web research, files, and code — everything runs on her own sandboxed computer.</p></div>
+      <div class="card"><div class="ico">⏰</div><h3>Reminders &amp; scheduled jobs</h3><p>Clara works while you're away and checks in with a morning note.</p></div>
+      <div class="card"><div class="ico">✅</div><h3>Approvals for risky actions</h3><p>Sending, deleting, buying, installing — you approve on your phone with a preview first.</p></div>
+      <div class="card"><div class="ico">📸</div><h3>Photos &amp; files</h3><p>Share photos and files straight from your phone into the conversation.</p></div>
+      <div class="card"><div class="ico">🎯</div><h3>Goals &amp; check-ins</h3><p>Set goals and get regular check-ins to keep you on track.</p></div>
+      <div class="card"><div class="ico">🔌</div><h3>Connectors</h3><p>Gmail, Google Calendar, Outlook, Spotify, Notion, Todoist, GitHub, Slack, Discord, Telegram, Dropbox and more.</p></div>
+      <div class="card"><div class="ico">☁️</div><h3>Optional cloud boost</h3><p>Need extra muscle? Tap cloud models via OpenRouter — with spending caps you control.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="watch" style="padding-top:20px">
+  <div class="wrap">
+    <span class="eyebrow">See her in action</span>
+    <h2>Watch the tour</h2>
+    <p class="lead">A minute with Clara — then a look at the app itself.</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/42DrnEKDVrE" title="Clara promo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="shots">
+      <div class="shot"><img src="/assets/screenshots/1_home.png" alt="Clara home screen with suggested tasks" loading="lazy"><p>Home — pick up where you left off</p></div>
+      <div class="shot"><img src="/assets/screenshots/2_working.png" alt="Clara working on a task" loading="lazy"><p>Watch her work, live in the chat</p></div>
+      <div class="shot"><img src="/assets/screenshots/3_answer.png" alt="Clara's researched answer" loading="lazy"><p>Answers with the page she used</p></div>
+      <div class="shot"><img src="/assets/screenshots/4_reminder.png" alt="Clara reminder" loading="lazy"><p>Reminders, delivered to your phone</p></div>
+      <div class="shot"><img src="/assets/screenshots/5_menu.png" alt="Clara app menu" loading="lazy"><p>Everything in the menu</p></div>
+      <div class="shot"><img src="/assets/screenshots/6_connectors.png" alt="Clara connectors screen" loading="lazy"><p>Connectors: Gmail, Spotify, and more</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">Getting started</span>
+    <h2>Two ways in — your call</h2>
+    <p class="lead">Clara is a pair: an app on your phone and a backend on your PC. Start with whichever is in front of you.</p>
+    <div class="paths">
+      <div class="path">
+        <div class="who">Path 1 · PC first</div>
+        <h3>Set up your computer</h3>
+        <ol>
+          <li>On your PC, run the installer below. It takes <b>20–40 minutes</b> (mostly downloading the model) and ends with a <b>QR code</b>.</li>
+          <li><b>Scan the QR code</b> with your phone's camera to get the app.</li>
+          <li>Open the app and enter the <b>computer address</b> and <b>pairing code</b> the installer showed.</li>
+        </ol>
+        <p>Lost the code? Run <b>clara pair</b> for a new one. Need the QR again? Run <b>clara app</b>.</p>
+      </div>
+      <div class="path">
+        <div class="who">Path 2 · App first</div>
+        <h3>Start on your phone</h3>
+        <ol>
+          <li>Install the APK from <b>#download</b> below and open it.</li>
+          <li>Tap <b>"New to Clara? Set up your computer first"</b>.</li>
+          <li>The app shows you the requirements and the install command (with Copy) — and can <b>send the setup link to your computer</b>.</li>
+        </ol>
+        <p>Then run the installer on your PC, come back, and pair.</p>
+      </div>
+    </div>
+    <div class="cmd">
+      <div class="cap">The one-line PC install</div>
+      <pre>git clone https://github.com/TheWiderLensInitiative/clara ~/clara &amp;&amp; cd ~/clara &amp;&amp; ./install.sh</pre>
+      <p class="note">Run it as your normal user — it asks for your password once. It checks your hardware, downloads the Bonsai 2 27B model, sets up Clara's sandboxed computer, private search, and voice, then prints your computer address and pairing code. Everyday commands: <code>clara status</code>, <code>clara pair</code>, <code>clara app</code>, <code>clara logs</code>, <code>clara update</code>.</p>
+    </div>
+    <div class="arch"><pre>Android app (Kotlin) ──Wi-Fi / Tailscale──▶ <span class="hl">Clara Bridge</span> (Python/FastAPI, your PC)
+                                                   │
+                                        <span class="hl3">Laya router</span> decides in ~⅓ second
+                                        ┌──────────┴──────────┐
+                                  quick chat            real task
+                                        │                   │
+                              <span class="hl2">Bonsai 2 27B</span> (PrismML)   <span class="hl2">Hermes agent</span> (sandboxed,
+                              on your NVIDIA GPU       no sudo, its own workspace)</pre></div>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <span class="eyebrow">Privacy</span>
+    <h2>Private by design, <span class="grad-text">not by promise</span></h2>
+    <p class="lead">By default, nothing leaves your PC. Not your chats, not your files, not your memories. Data only leaves your machine when you explicitly ask it to:</p>
+    <ul class="check-list">
+      <li><span class="tick">✓</span><div>Private search — <small>queries go to your own SearXNG instance running in Docker on your PC.</small></div></li>
+      <li><span class="tick">✓</span><div>Cloud boost — <small>only if you enable it, only the task you send, capped by the spending limit you set.</small></div></li>
+      <li><span class="tick">✓</span><div>Connectors — <small>only the services you connect, only the data those tasks need.</small></div></li>
+      <li><span class="tick">✓</span><div>Phone dictation — <small>may use your phone's built-in speech recognizer.</small></div></li>
+      <li><span class="tick">✓</span><div>Passwords stay on your phone — <small>stored in the Android keystore behind your fingerprint. Clara can use a login without ever seeing it.</small></div></li>
+    </ul>
+    <p class="lead" style="margin-top:26px">The full policy: <a href="/privacy" style="color:var(--cyan);text-decoration:underline">clara.thewiderlens.info/privacy</a></p>
+  </div>
+</section>
+
+<section id="requirements">
+  <div class="wrap">
+    <span class="eyebrow">Requirements</span>
+    <h2>What you need</h2>
+    <p class="lead">Clara runs a 27-billion-parameter model on your own hardware — so she asks a little more of your PC than a cloud app would.</p>
+    <div class="req-grid">
+      <div class="req"><div class="big grad-text">Ubuntu 24.04+</div><div class="cap">24.04 or newer — 26.04 works too</div></div>
+      <div class="req"><div class="big grad-text">12 GB+ VRAM</div><div class="cap">NVIDIA GPU (tested on RTX 3060 12 GB)</div></div>
+      <div class="req"><div class="big grad-text">16 GB RAM</div><div class="cap">32 GB recommended</div></div>
+      <div class="req"><div class="big grad-text">40 GB disk</div><div class="cap">For the model + components</div></div>
+      <div class="req"><div class="big grad-text">Android 9+</div><div class="cap">For the phone app</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="download" id="download">
+  <div class="wrap">
+    <span class="eyebrow">Get Clara</span>
+    <h2>Download for Android</h2>
+    <p class="lead" style="margin:0 auto">Grab the APK from GitHub Releases. It's free, no account needed. <a href="https://github.com/TheWiderLensInitiative/clara/releases" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline">What's new →</a></p>
+    <div style="margin-top:30px">
+      <a class="btn btn-primary" href="https://github.com/TheWiderLensInitiative/clara/releases/latest" target="_blank" rel="noopener">Download the APK</a>
+    </div>
+    <div class="dl-steps">
+      <div class="step"><h3>1. Download</h3><p>Tap the button above on your phone to download the APK from the official GitHub Releases page.</p></div>
+      <div class="step"><h3>2. Allow the install</h3><p>Android will ask you to allow installs from unknown sources. Allow it for your browser or files app — this is normal for apps installed outside the Play Store.</p></div>
+      <div class="step"><h3>3. Set up your PC</h3><p>Run the one-line installer on your PC (see <a href="#how" style="color:var(--cyan);text-decoration:underline">Getting started</a>), or tap <b>"New to Clara? Set up your computer first"</b> in the app and let it guide you.</p></div>
+      <div class="step"><h3>4. Pair</h3><p>Enter the computer address and pairing code — or just scan the QR code the installer shows. <code>clara pair</code> makes a fresh code anytime.</p></div>
+    </div>
+    <p class="dl-note">New to this? <b>Unknown sources</b> just means "apps not from the Play Store." Clara is open source — you can read every line of the app's code on GitHub before installing.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2>Questions, answered</h2>
+    <div class="faq-list">
+      <details><summary>Is Clara really free?</summary><p>Yes. Clara is free and open source under the Apache 2.0 license. No subscription, no account, no paywalled features. The optional cloud boost uses your own OpenRouter key with caps you set — that's the only thing that could ever cost money, and it's off by default.</p></details>
+      <details><summary>I installed the app first — now what?</summary><p>Open the app and tap <b>"New to Clara? Set up your computer first."</b> It shows the PC requirements and the one-line install command with a Copy button, and can send the setup link to your computer. Run <code>git clone https://github.com/TheWiderLensInitiative/clara ~/clara &amp;&amp; cd ~/clara &amp;&amp; ./install.sh</code> on your PC, then come back and pair.</p></details>
+      <details><summary>Does Clara work without the internet?</summary><p>Your chats, tasks, voice, and memories all run locally on your PC — no internet needed for those. Web search, connectors, and remote access from outside your home (via Tailscale) need a connection, naturally.</p></details>
+      <details><summary>How is this different from ChatGPT or Claude?</summary><p>Those run on someone else's computers; your conversations live on their servers. Clara runs on your hardware. Your chats, files, and memories never leave your PC unless you explicitly send them somewhere.</p></details>
+      <details><summary>What phones are supported?</summary><p>The Clara app is Android 9 and up. The backend runs on an Ubuntu 24.04+ PC (26.04 works) with an NVIDIA GPU (12 GB+ VRAM).</p></details>
+      <details><summary>Can I see the source code?</summary><p>Absolutely — that's the point. The whole project is on GitHub under Apache 2.0: the Android app, the Python bridge, the agent setup, the router training data, and the installer.</p></details>
+      <details><summary>Who makes Clara?</summary><p>Created by DevIgnite × The Wider Lens Initiative Project. The whole project is open source — contributions are welcome on GitHub.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 The Wider Lens Initiative · Clara is free &amp; open source (Apache 2.0)</div>
+    <div class="foot-links">
+      <a href="https://github.com/TheWiderLensInitiative/clara" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/TheWiderLensInitiative/clara/releases/latest" target="_blank" rel="noopener">Releases</a>
+      <a href="/privacy">Privacy</a>
+      <a href="mailto:clara@thewiderlens.info">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+    <div class="foot-credit">Created by DevIgnite × The Wider Lens Initiative Project</div>
+  </div>
+</footer>
+
+</body>
+</html>
