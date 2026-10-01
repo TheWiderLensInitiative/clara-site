@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara — Join the beta</title>
+<meta name="description" content="Help bring Clara, the free private AI assistant that runs on your own PC, to Google Play. Join the beta test.">
+<link rel="icon" type="image/png" href="/assets/clara-mark-transparent.png">
+<meta property="og:title" content="Join the Clara beta">
+<meta property="og:description" content="Clara is a free, private AI assistant that runs on your own PC. Help us bring the Android app to Google Play.">
+<meta property="og:image" content="https://clara.thewiderlens.info/assets/clara-logo.png">
+<style>
+:root{
+  --bg:#06060b; --bg2:#0b0b14; --card:#101019; --line:#23232f;
+  --text:#f2f2f7; --muted:#a7a7b8;
+  --cyan:#38e1ff; --violet:#8b5cf6; --magenta:#f471d8;
+  --grad:linear-gradient(100deg,var(--cyan),var(--violet) 55%,var(--magenta));
+  --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{position:sticky;top:0;z-index:50;background:rgba(6,6,11,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1100px;margin:0 auto;padding:0 22px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.25rem}
+.brand img{width:34px;height:34px;border-radius:9px}
+.back{font-size:.95rem;color:var(--muted)}
+.back:hover{color:var(--text)}
+main{padding:64px 0 90px}
+h1{font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15;letter-spacing:-.02em;margin:14px 0 12px}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.lead{color:var(--muted);font-size:1.08rem;margin-bottom:34px}
+h2{font-size:1.35rem;margin:38px 0 12px;letter-spacing:-.01em}
+h2 .n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:rgba(139,92,246,.16);color:#c9b3ff;font-size:.95rem;margin-right:10px;vertical-align:2px}
+p{margin:0 0 14px;color:#d9d9e2}
+p strong{color:var(--text)}
+ul{margin:0 0 16px 20px;color:#d9d9e2}
+li{margin-bottom:8px}
+table{width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:.95rem;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:block;overflow-x:auto}
+thead th{background:rgba(139,92,246,.1);text-align:left;padding:12px 14px;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;color:#c9b3ff;white-space:nowrap}
+tbody td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top;color:#d9d9e2}
+tbody tr:first-child td{border-top:0}
+.note{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin:22px 0;color:var(--muted);font-size:.96rem}
+.note strong{color:var(--text)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.9rem}
+.foot-inner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:1100px;margin:0 auto;padding:0 22px}
+.foot-links{display:flex;gap:20px}
+.foot-links a:hover{color:var(--text)}
+.updated{color:var(--muted);font-size:.88rem;margin-top:26px}
+
+.cta{display:inline-block;margin:6px 0 10px;padding:15px 28px;border-radius:14px;background:var(--grad);color:#fff;font-weight:800;font-size:1.05rem}
+.cta:hover{opacity:.92}
+.steps{counter-reset:s;list-style:none;margin:0 0 16px 0}
+.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 58px;margin-bottom:12px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:30px;height:30px;border-radius:10px;background:rgba(139,92,246,.16);color:#c9b3ff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.small{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/"><img src="/assets/clara-mark-transparent.png" alt="Clara mark">Clara</a>
+    <a class="back" href="/">← Back to home</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+<span class="eyebrow">Beta testers wanted</span>
+<h1>Help us bring <span class="grad-text">Clara</span> to Google Play</h1>
+<p class="lead">Clara is a free, private AI assistant that runs on your own PC, with an Android app to talk to her. To publish the app on Google Play, we need a small group of testers to use the test version for two weeks. Want in?</p>
+
+<!-- JOIN_URL: switch to the Google Group link once it exists -->
+<a class="cta" id="join" href="mailto:clara@thewiderlens.info?subject=Join%20the%20Clara%20beta&body=Hi!%20I'd%20like%20to%20test%20Clara.%0A%0AThe%20Google%20account%20(Gmail)%20I%20use%20on%20my%20Android%20phone%3A%20%0AMy%20phone%3A%20%0AI%20have%20a%20Linux%20PC%20with%20an%20NVIDIA%20GPU%20(12%20GB%2B)%3A%20yes%20%2F%20no%0A">Join the beta</a>
+<p class="small">Free. Takes two minutes. Leave any time.</p>
+
+<h2><span class="n">1</span>What you'll need</h2>
+<ul>
+<li>An <strong>Android phone</strong> (Android 9 or newer) with a Google account</li>
+<li>Ideally a <strong>Linux PC with an NVIDIA graphics card</strong> (12 GB of memory or more) to run Clara on. No such PC? You can still help: install the test app and tell us what you think of it.</li>
+</ul>
+
+<h2><span class="n">2</span>How it works</h2>
+<ol class="steps">
+<li><strong>Join the beta</strong> with the button above. Use the Google account that's on your phone.</li>
+<li>We send you the <strong>Google Play test link</strong>. Open it on your phone and tap <strong>Become a tester</strong>.</li>
+<li><strong>Install Clara from Google Play</strong> and, if you have the PC, set it up with the <a href="/#download" style="color:var(--cyan)">install guide</a>.</li>
+<li><strong>Stay in the test for at least 14 days</strong> (just keep the app installed) and tell us what works and what doesn't.</li>
+</ol>
+
+<h2><span class="n">3</span>Feedback</h2>
+<p>Email <a href="mailto:clara@thewiderlens.info" style="color:var(--cyan)">clara@thewiderlens.info</a>, use <strong>Report this reply</strong> (long-press a message in the app), or open an issue on <a href="https://github.com/TheWiderLensInitiative/clara/issues" target="_blank" rel="noopener" style="color:var(--cyan)">GitHub</a>.</p>
+
+<div class="note"><strong>Your privacy:</strong> we only use your email to add you to the test and send you test updates. Clara itself sends nothing to us: see the <a href="/privacy" style="color:var(--cyan)">privacy policy</a>.</div>
+</div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div>© 2026 The Wider Lens Initiative · Clara is free &amp; open source (Apache 2.0)<br>Created by DevIgnite × The Wider Lens Initiative Project</div>
+    <div class="foot-links">
+      <a href="/">Home</a>
+      <a href="https://github.com/TheWiderLensInitiative/clara" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,1 +1,1 @@
-{"rewrites":[{"destination":"/privacy.html","source":"/privacy"}]}
+{"rewrites": [{"destination": "/privacy.html", "source": "/privacy"}, {"destination": "/beta.html", "source": "/beta"}]}
